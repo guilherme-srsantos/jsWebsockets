@@ -1,0 +1,29 @@
+
+services:
+  # api:
+  #   container_name: api
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     - DATABASE_URL=postgresql://teste:teste123@db:5432/ws_db
+
+  db:
+    image: postgres:17.0
+    container_name: db_pg
+    environment:
+      - POSTGRES_PASSWORD=teste123
+      - POSTGRES_USER=teste
+      - POSTGRES_DB=ws_db
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
